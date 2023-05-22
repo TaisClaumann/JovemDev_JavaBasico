@@ -21,7 +21,6 @@ public class Principal {
 		gabriel.altura = 1.68;
 		imc = gabriel.calculaIMC();
 		distincao= gabriel.distincaoIMC(imc);
-		
 		System.out.println(gabriel.toString(imc, distincao));
 
 	}
