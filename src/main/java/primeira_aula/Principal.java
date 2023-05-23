@@ -11,6 +11,7 @@ public class Principal {
 		jessica.altura = 1.55;
 		double imc = jessica.calculaIMC();
 		String distincao = jessica.distincaoIMC(imc);
+		
 		System.out.println(jessica.toString(imc, distincao));
 		
 		Pessoa gabriel = new Pessoa();
