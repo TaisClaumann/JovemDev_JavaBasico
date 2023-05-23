@@ -1,5 +1,7 @@
 package segunda_aula.exercicio_carro;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class Carro {
@@ -10,6 +12,11 @@ public class Carro {
 	
 	public void cadastraCarro() {
 		marca = JOptionPane.showInputDialog("Informe a marca");
+		
+		while(marca.isEmpty()) {
+			marca = JOptionPane.showInputDialog("A marca não pode ser vazia, informe novamente");
+		}
+		
 		ano = Integer.parseInt(JOptionPane.showInputDialog("Informe o ano"));
 		
 		String menu = "**Informe o código da cor**\n"+
@@ -19,9 +26,9 @@ public class Carro {
 		int opcaoCor = Integer.parseInt(JOptionPane.showInputDialog(menu));
 		
 		if(opcaoCor==1) {
-			cor = cor.VERMELHO;
+			cor = listaCor.VERMELHO;
 		} else if (opcaoCor==2) {
-			cor = cor.BRANCO;
+			cor = listaCor.BRANCO;
 		} else {
 			while(opcaoCor != 1 && opcaoCor !=2) {
 				JOptionPane.showMessageDialog(null, "Cor inválida");
@@ -32,6 +39,11 @@ public class Carro {
 	
 	public enum listaCor{
 		BRANCO(), VERMELHO();
+	}
+	
+	public static double calculaPercentual(List<Carro> carros, int contador) {
+		double porcentCarro = (contador*100)/carros.size();
+		return porcentCarro;
 	}
 	
 	public String toString() {

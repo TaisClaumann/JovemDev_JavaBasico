@@ -22,10 +22,12 @@ public class Principal {
 		
 			opcao = Integer.parseInt(JOptionPane.showInputDialog(menu));
 			String resultado ="";
+			int contador =0;
 
 			if(opcao==1) {
 				Carro carro = new Carro();
 				carro.cadastraCarro();
+				
 				carros.add(carro);
 			
 			} else if(opcao==2) {
@@ -35,10 +37,11 @@ public class Principal {
 				for (Carro carro : carros) {
 					if(carro.ano >= anoInicial && carro.ano <= anoFinal) {
 						resultado += carro.toString()+"\n\n";
+						contador++;
 					}
 				}
 				
-				JOptionPane.showMessageDialog(null, resultado);
+				JOptionPane.showMessageDialog(null, resultado+"Porcentagem: "+Carro.calculaPercentual(carros, contador));
 			
 			} else if (opcao==3) {
 				String filtroMarca = JOptionPane.showInputDialog("Informe a marca a ser filtrada");
@@ -46,29 +49,28 @@ public class Principal {
 				for (Carro carro : carros) {
 					if(carro.marca.equalsIgnoreCase(filtroMarca)) {
 						resultado += carro.toString()+"\n\n";
+						contador++;
 					}
 				}
 				
-				JOptionPane.showMessageDialog(null, resultado);
+				JOptionPane.showMessageDialog(null, resultado+"Porcentagem: "+Carro.calculaPercentual(carros, contador));
 			
 			} else if (opcao==4) {
 				String filtroCor = JOptionPane.showInputDialog("Informe a cor a ser filtrada");
 				
 				for (Carro carro : carros) {
-					if(filtroCor == String.valueOf(carro.cor)) {
+					
+					if(filtroCor.equalsIgnoreCase(carro.cor.toString())) {
 						resultado += carro.toString()+"\n\n";
+						contador++;
 					}
 				}
 				
-				JOptionPane.showMessageDialog(null, resultado);
+				JOptionPane.showMessageDialog(null, resultado+"Porcentagem: "+Carro.calculaPercentual(carros, contador));
 			} 
 			
 		}while(opcao!=0);
-		
-		
-		
-		
-	
+
 	}
 
 }
