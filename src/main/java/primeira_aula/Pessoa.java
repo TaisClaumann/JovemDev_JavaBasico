@@ -13,7 +13,7 @@ public class Pessoa {
 	public String distincaoIMC(double imc) {
 		String distincao ="";
 		
-		if(sexo.equals("F")) {
+		if(sexo.equalsIgnoreCase("F")) {
 			if(imc<19.1) {
 				distincao = "Abaixo do Peso";
 			}else if(imc>=19.1 && imc<25.9) {
