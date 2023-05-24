@@ -18,4 +18,9 @@ public class Jogador {
 			numCamisa = Integer.parseInt(JOptionPane.showInputDialog("Número da camisa"));
 			quantGols = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de gols no campeonato"));
 	}
+	
+	public String toString() {
+		return "Nome: "+nome+"   Camisa: "+numCamisa+"   Gols: "+quantGols+"\n";
+	}
+	
 }

@@ -21,9 +21,15 @@ public class Time {
 		String continuar = "";
 		
 		do {
+			jog = new Jogador();
 			jog.cadastraJogador();
 			jogadores.add(jog);
 			continuar = JOptionPane.showInputDialog("Deseja continuar?");
 		}while(continuar.equalsIgnoreCase("sim"));
+	}
+	
+	public String toString() {
+		String mensagem ="Time: "+nome+"\n";
+		return mensagem;
 	}
 }

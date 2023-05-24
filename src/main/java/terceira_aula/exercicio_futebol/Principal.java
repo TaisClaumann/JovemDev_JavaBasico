@@ -1,32 +1,43 @@
 package terceira_aula.exercicio_futebol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class Principal {
 
 	public static void main(String[] args) {
 
-		String menu = Util.imprimeMenu();
-		int opcao = Integer.parseInt(JOptionPane.showInputDialog(menu));
+		List<Time> times = new ArrayList<Time>();
+		String continuar ="";
+		int opcao =0;
 		
-		switch (opcao) {
-		case 1:
-			Time time = new Time();
-			time.cadastroTime();
+		do {
 			
+			String menu = Util.imprimeMenu();
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(menu));
 			
-			break;
-		case 2:
-			break;
-		case 3:
-			break;	
-		case 4:
-			break;
-		case 5:
-			break;
-		default:
-			break;
-		}
+			switch (opcao) {
+			case 1:
+					Time time = new Time();
+					time.cadastroTime();
+					times.add(time);
+				break;
+			case 2:
+				JOptionPane.showMessageDialog(null, Util.listaJogadoresTime(times));
+				break;
+			case 3:
+				JOptionPane.showMessageDialog(null, Util.verificaArtilheiro(times));
+				break;	
+			case 4:
+				JOptionPane.showMessageDialog(null, Util.verificaTimeMaiorGol(times));
+				break;
+			}
+			
+		}while(opcao!=5);
+		
+		
 		
 	}
 
