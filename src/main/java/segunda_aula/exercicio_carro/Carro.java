@@ -4,6 +4,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Carro {
 	
 	String marca;
