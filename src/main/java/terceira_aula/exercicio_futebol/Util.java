@@ -23,17 +23,12 @@ public class Util {
 		return menu;
 	}
 	
-	public static String listaJogadoresTime(List<Time> times) {
+	public static String listaJogadoresTimes(List<Time> times) {
 		String pergTime = JOptionPane.showInputDialog("Informe o time a ser filtrado");
 		
 		for (Time time : times) {
 			if(pergTime.equalsIgnoreCase(time.getNome())) {
-				resposta = "";
-				
-				resposta = time.toString();
-				for (Jogador jogador : time.getJogadores()) {
-					resposta+= jogador.toString();
-				}
+				resposta = time.toString()+time.getJogador();
 			}
 		}
 		
@@ -41,35 +36,26 @@ public class Util {
 	}
 	
 	public static String verificaArtilheiro(List<Time> times) {
-		maiorQuantGols =0;
+		resposta ="";
+		maiorQuantGols=0;
 		
-		for (Time time : times) {
-			
-			for (Jogador jogador : time.getJogadores()) {
-				
-				if(jogador.getQuantGols()>maiorQuantGols) {
-					maiorQuantGols = jogador.getQuantGols();
-					resposta = "Artilheiro:\n"+jogador.toString();
-				}
+		for (Time time : times) {	
+			if(time.getArtilheiro().getQuantGols()>maiorQuantGols) {
+				maiorQuantGols = time.getArtilheiro().getQuantGols();
+				resposta = time.getArtilheiro().toString();
 			}
 		}
 		
 		return resposta;
 	}
-	
+		
 	public static String verificaTimeMaiorGol(List<Time> times) {
-		maiorQuantGols = 0;
+		maiorQuantGols=0;
 		
 		for (Time time : times) {
-			int totalGols =0;
-			
-			for (Jogador jog : time.getJogadores()) {
-				totalGols += jog.getQuantGols();
-			}
-			
-			if(totalGols>maiorQuantGols) {
-				maiorQuantGols = totalGols;
-				resposta = "O time com maior qtd de gols: "+time.toString()+ "Total gols: "+maiorQuantGols;
+			if(time.getSomaGolsJog()>maiorQuantGols) {
+				maiorQuantGols = time.getSomaGolsJog();
+				resposta = "Time com maiores gols: "+time.toString()+"Total Gols: "+maiorQuantGols;
 			}
 		}
 		

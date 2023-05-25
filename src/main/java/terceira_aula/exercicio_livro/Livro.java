@@ -11,7 +11,7 @@ public class Livro {
 
 	private String titulo;
 	private double preco;
-	private String autor;
+	private Autor autor;
 	
 	public void cadastraLivro(ArrayList<Autor> autores) {
 		titulo = JOptionPane.showInputDialog("Informe o título");

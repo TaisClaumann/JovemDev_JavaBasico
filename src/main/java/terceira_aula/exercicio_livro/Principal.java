@@ -27,7 +27,7 @@ public class Principal {
 				livros.add(livro);
 				break;
 			case 3:
-
+				JOptionPane.showMessageDialog(null, Util.listaLivros(livros));
 				break;
 			case 4:
 

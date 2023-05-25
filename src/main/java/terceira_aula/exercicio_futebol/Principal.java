@@ -25,7 +25,7 @@ public class Principal {
 					times.add(time);
 				break;
 			case 2:
-				JOptionPane.showMessageDialog(null, Util.listaJogadoresTime(times));
+				JOptionPane.showMessageDialog(null, Util.listaJogadoresTimes(times));
 				break;
 			case 3:
 				JOptionPane.showMessageDialog(null, Util.verificaArtilheiro(times));

@@ -33,7 +33,7 @@ public class Util {
 		return sexo;
 	}
 	
-	public static String escolheAutor(ArrayList<Autor> autores) {
+	public static Autor escolheAutor(ArrayList<Autor> autores) {
 		String menu = "Informe o Autor\n";
 		
 		for (Autor autor : autores) {
@@ -41,7 +41,23 @@ public class Util {
 		}
 		
 		String pergAutor = JOptionPane.showInputDialog(menu);
-		return pergAutor;
+		Autor autorEscolhido = new Autor();
+		
+		if(pergAutor.equalsIgnoreCase(autorEscolhido.getNome())) {
+			autorEscolhido = autorEscolhido;
+		}
+		
+		return autorEscolhido;
+	}
+	
+	public static String listaLivros(ArrayList<Livro> livros) {
+		String resposta ="";
+		
+		for (Livro livro : livros) {
+			resposta += livro.toString() + livro.getAutor();
+		}
+		
+		return resposta;
 	}
 
 }
