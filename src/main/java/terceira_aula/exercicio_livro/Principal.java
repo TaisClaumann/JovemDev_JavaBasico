@@ -17,14 +17,10 @@ public class Principal {
 			
 			switch (opcao) {
 			case 1:
-				Autor autor = new Autor();
-				autor.cadastraAutor();
-				autores.add(autor);
+				Util.cadastraAutor(autores);
 				break;
 			case 2:
-				Livro livro = new Livro();
-				livro.cadastraLivro(autores);;
-				livros.add(livro);
+				Util.cadastraLivro(livros);
 				break;
 			case 3:
 				JOptionPane.showMessageDialog(null, Util.listaLivros(livros));

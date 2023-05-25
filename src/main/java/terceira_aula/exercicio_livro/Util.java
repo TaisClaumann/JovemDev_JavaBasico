@@ -1,6 +1,7 @@
 package terceira_aula.exercicio_livro;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -33,28 +34,56 @@ public class Util {
 		return sexo;
 	}
 	
-	public static Autor escolheAutor(ArrayList<Autor> autores) {
-		String menu = "Informe o Autor\n";
-		
-		for (Autor autor : autores) {
-			menu += "- "+autor.getNome()+"\n";
-		}
-		
-		String pergAutor = JOptionPane.showInputDialog(menu);
+	public static void cadastraAutor(List<Autor> autores) {
+		String continuar = "";
+
+		do {
+			Autor autor = new Autor();
+			autor.cadastraAutor();
+			autores.add(autor);
+			continuar = JOptionPane.showInputDialog("Deseja continuar?");
+		} while (continuar.equalsIgnoreCase("sim"));
+	}
+	
+	public static Autor escolheAutor(List<Autor> autores, String menu) {
+		Autor autor = new Autor();
 		Autor autorEscolhido = new Autor();
+		String pergAutor = JOptionPane.showInputDialog(menu);
 		
-		if(pergAutor.equalsIgnoreCase(autorEscolhido.getNome())) {
-			autorEscolhido = autorEscolhido;
+		if(pergAutor.equalsIgnoreCase(autor.getNome())) {
+			autorEscolhido = autor;
 		}
 		
 		return autorEscolhido;
+	}
+	
+	public static String menuAutor(List<Autor> autores) {
+		String menu = "Informe o Autor\n";
+
+		for (Autor autor : autores) {
+			menu += "- " + autor.getNome() + "\n";
+		}
+		
+		return menu;
+	}
+	
+	public static void cadastraLivro(List<Livro> livros) {
+		String continuar = "";
+		
+		do {
+			Livro livro = new Livro();
+			livro.cadastraLivro();
+			livros.add(livro);
+			continuar = JOptionPane.showInputDialog("Deseja continuar?");
+		}while(continuar.equalsIgnoreCase("sim"));
+		
 	}
 	
 	public static String listaLivros(ArrayList<Livro> livros) {
 		String resposta ="";
 		
 		for (Livro livro : livros) {
-			resposta += livro.toString() + livro.getAutor();
+			resposta += livro.toString() + livro.getAutor()+"\n";
 		}
 		
 		return resposta;
