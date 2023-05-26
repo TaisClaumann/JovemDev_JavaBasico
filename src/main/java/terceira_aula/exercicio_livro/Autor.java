@@ -28,7 +28,7 @@ public class Autor {
 			JOptionPane.showMessageDialog(null, "A idade precisa ser maior que 0");
 		} else if (palavras.length != 2) {
 			valido = false;
-			JOptionPane.showMessageDialog(null, "O nome precisa ter NOME e SOBRENOME apenas");
+			JOptionPane.showMessageDialog(null, "O nome precisa ter NOME e SOBRENOME");
 		}
 		
 		return valido;
