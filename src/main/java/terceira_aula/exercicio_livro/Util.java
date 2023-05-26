@@ -1,6 +1,7 @@
 package terceira_aula.exercicio_livro;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -21,7 +22,7 @@ public class Util {
 		return menu;
 	}
 	
-	public static Sexo escolheCor() {
+	public static Sexo escolheSexo() {
 		String menu = "Informe o sexo\n\n";
 		
 		for (Sexo tipoSexo : Sexo.values()) {
@@ -45,13 +46,15 @@ public class Util {
 		} while (continuar.equalsIgnoreCase("sim"));
 	}
 	
-	public static Autor escolheAutor(List<Autor> autores, String menu) {
-		Autor autor = new Autor();
-		Autor autorEscolhido = new Autor();
+	public static Autor escolheAutor(List<Autor> autores) {
+		String menu = menuAutor(autores);
 		String pergAutor = JOptionPane.showInputDialog(menu);
+		Autor autorEscolhido = new Autor();
 		
-		if(pergAutor.equalsIgnoreCase(autor.getNome())) {
-			autorEscolhido = autor;
+		for (Autor autor : autores) {
+			if(pergAutor.equalsIgnoreCase(autor.getNome())) {
+				autorEscolhido = autor;
+			}
 		}
 		
 		return autorEscolhido;
@@ -67,20 +70,19 @@ public class Util {
 		return menu;
 	}
 	
-	public static void cadastraLivro(List<Livro> livros) {
+	public static void cadastraLivro(List<Livro> livros, List<Autor> autores) {
 		String continuar = "";
 		
 		do {
 			Livro livro = new Livro();
-			livro.cadastraLivro();
-			livros.add(livro);
-			continuar = JOptionPane.showInputDialog("Deseja continuar?");
+			livro.cadastraLivro(autores);
+			livros.add(livro);	
+			continuar = JOptionPane.showInputDialog("Deseja cadastrar outro livro?");
 		}while(continuar.equalsIgnoreCase("sim"));
-		
 	}
 	
-	public static String listaLivros(ArrayList<Livro> livros) {
-		String resposta ="";
+	public static String listaLivros(List<Livro> livros) {
+		String resposta =""; 
 		
 		for (Livro livro : livros) {
 			resposta += livro.toString() + livro.getAutor()+"\n";
@@ -88,5 +90,76 @@ public class Util {
 		
 		return resposta;
 	}
-
+	
+	public static String buscaLivroPorAutor(List<Autor> autores, List<Livro> livros) {
+		Autor autorSelect = Livro.buscaAutorPorNome(autores, JOptionPane.showInputDialog(menuAutor(autores)));
+		String resposta = "";
+		
+		for (Livro livro : livros) {
+			
+			if(livro.temAutor(autorSelect)) {
+				resposta += autorSelect.getNome()+"\n"+livro.toString();
+			}
+		}
+		
+		return resposta;
+	}
+	
+	public static String buscaLivroPorPreco(List<Livro> livros) {
+		double valorMin = Double.parseDouble(JOptionPane.showInputDialog("Informe o valor mínimo"));
+		double valorMax = Double.parseDouble(JOptionPane.showInputDialog("Informe o valor maximo"));
+		String resposta = "";
+		
+		for (Livro livro : livros) {
+			if(livro.getPreco()>=valorMin && livro.getPreco()<=valorMax) {
+				resposta += livro.toString();
+			}
+		}
+		
+		return resposta;
+	}
+	
+	public static String buscaLivroAutorCrianca(List<Autor> autores, List<Livro> livros) {
+		String resposta = "";
+		Autor crianca = new Autor();
+		
+		for (Autor autor : autores) {
+			
+			if(Livro.temAutorCrianca(autores)==true) {
+				crianca = autor;
+				
+				for (Livro livro : livros) {
+					if(livro.autores.contains(crianca)) {
+						resposta += "Autor: "+crianca.getNome()+" - "+livro.toString();
+					}
+				}
+			}
+		}
+		
+		return resposta;
+	}
+	
+	public static String buscaLivroGeneroAutor(List<Autor> autores, List<Livro> livros) {
+		String listaLivro = "";
+		Sexo sexo = escolheSexo();
+		Autor autorSelect = new Autor();
+		
+		for (Autor autor : autores) {
+			
+			if(autor.getEnumSexo()==sexo) {
+				autorSelect = autor;
+				
+				for (Livro livro : livros) {
+					if(livro.temAutor(autorSelect)) {
+						listaLivro+= autorSelect.toString()+"\n"+livro.toString();
+					}
+				}
+			}
+		}
+		
+		return listaLivro;
+	}
+	
+	
+	
 }

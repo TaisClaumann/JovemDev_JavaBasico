@@ -15,7 +15,7 @@ public class Autor {
 		do {
 			nome = JOptionPane.showInputDialog("Informe o nome e o sobrenome do autor");
 			idade = Integer.parseInt(JOptionPane.showInputDialog("Informe a idade"));
-			enumSexo = Util.escolheCor();
+			enumSexo = Util.escolheSexo();
 			valida();
 		}while(valida()==false);
 	}
@@ -32,7 +32,7 @@ public class Autor {
 	}
 	
 	public String toString() {
-		String mensagem ="Nome: "+nome+"  Sexo: "+enumSexo+"  Idade: "+idade;
+		String mensagem ="Autor: "+nome+"  Sexo: "+enumSexo.getDescrição()+"  Idade: "+idade+" anos";
 		return mensagem;
 	}
 
