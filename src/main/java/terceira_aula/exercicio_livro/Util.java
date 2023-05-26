@@ -60,7 +60,7 @@ public class Util {
 	
 	public static String menuAutor(List<Autor> autores) {
 		String menu = "Informe o Autor\n";
-
+		
 		for (Autor autor : autores) {
 			menu += "- " + autor.getNome() + "\n";
 		}
@@ -137,16 +137,16 @@ public class Util {
 	
 	public static String buscaLivroGeneroAutor(List<Autor> autores, List<Livro> livros) {
 		Sexo sexo = escolheSexo();
-		Autor autorSelect = new Autor();
+		Autor autorEscolhido = new Autor();
 		String listaLivro = "";
 		
 		for (Autor autor : autores) {
 			if(autor.getEnumSexo()==sexo) {
-				autorSelect = autor;
+				autorEscolhido = autor;
 				
 				for (Livro livro : livros) {
-					if(livro.temAutor(autorSelect)) {
-						listaLivro+= autorSelect.toString()+"\n"+livro.toString();
+					if(livro.temAutor(autorEscolhido)) {
+						listaLivro+= autorEscolhido.toString()+"\n"+livro.toString();
 					}
 				}
 			}

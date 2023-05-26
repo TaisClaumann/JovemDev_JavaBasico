@@ -15,11 +15,17 @@ public class Livro {
 	private List<Autor> autores = new ArrayList<Autor>();
 	
 	public void cadastraLivro(List<Autor> todosAltores) {
+		boolean validaPreco = true;
+		
 		do {
 			titulo = JOptionPane.showInputDialog("Informe o título").toLowerCase();
-			preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preço"));
+			try {
+				preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preço"));
+			} catch (Exception e) {
+				validaPreco = false;
+			}
 			adicionaAutor(todosAltores);
-		}while(valida()==false);
+		}while(valida()==false && validaPreco==false);
 	}
 	
 	public boolean valida() {

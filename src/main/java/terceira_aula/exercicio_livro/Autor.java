@@ -12,26 +12,32 @@ public class Autor {
 	private int idade;
 	
 	public void cadastraAutor() {
+		boolean validaIdade = true;
+		
 		do {
 			nome = JOptionPane.showInputDialog("Informe o nome e o sobrenome do autor");
-			idade = Integer.parseInt(JOptionPane.showInputDialog("Informe a idade"));
+			try {
+				idade = Integer.parseInt(JOptionPane.showInputDialog("Informe a idade"));
+			} catch (Exception e) {
+				validaIdade = false;
+			}
 			enumSexo = Util.escolheSexo();
-		}while(valida()==false);
+		}while(valida()==false || validaIdade==false);
 	}
 	
 	public boolean valida() {
-		boolean valido = true;
+		boolean cadValido = true;
 		String palavras[] = nome.trim().split("\\s+");
 		
 		if(idade <=0) {
-			valido = false;
+			cadValido = false;
 			JOptionPane.showMessageDialog(null, "A idade precisa ser maior que 0");
 		} else if (palavras.length != 2) {
-			valido = false;
+			cadValido = false;
 			JOptionPane.showMessageDialog(null, "O nome precisa ter NOME e SOBRENOME");
 		}
 		
-		return valido;
+		return cadValido;
 	}
 	
 	public String toString() {

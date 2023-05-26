@@ -27,7 +27,6 @@ public class Principal {
 			if(opcao==1) {
 				Carro carro = new Carro();
 				carro.cadastraCarro();
-				
 				carros.add(carro);
 			
 			} else if(opcao==2) {
