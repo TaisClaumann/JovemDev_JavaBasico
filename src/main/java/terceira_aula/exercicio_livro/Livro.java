@@ -16,7 +16,7 @@ public class Livro {
 	
 	public void cadastraLivro(List<Autor> todosAltores) {
 		do {
-			titulo = JOptionPane.showInputDialog("Informe o título");
+			titulo = JOptionPane.showInputDialog("Informe o título").toLowerCase();
 			preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preço"));
 			int contador =0;
 			String continuar="";
