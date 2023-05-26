@@ -1,7 +1,5 @@
 package terceira_aula.exercicio_livro;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -92,13 +90,12 @@ public class Util {
 	}
 	
 	public static String buscaLivroPorAutor(List<Autor> autores, List<Livro> livros) {
-		Autor autorSelect = Livro.buscaAutorPorNome(autores, JOptionPane.showInputDialog(menuAutor(autores)));
+		Autor autorEscolhido = Livro.buscaAutorPorNome(autores, JOptionPane.showInputDialog(menuAutor(autores)));
 		String resposta = "";
 		
 		for (Livro livro : livros) {
-			
-			if(livro.temAutor(autorSelect)) {
-				resposta += autorSelect.getNome()+"\n"+livro.toString();
+			if(livro.temAutor(autorEscolhido)) {
+				resposta += autorEscolhido.getNome()+"\n"+livro.toString();
 			}
 		}
 		
@@ -124,12 +121,11 @@ public class Util {
 		Autor crianca = new Autor();
 		
 		for (Autor autor : autores) {
-			
 			if(Livro.temAutorCrianca(autores)==true) {
 				crianca = autor;
 				
 				for (Livro livro : livros) {
-					if(livro.autores.contains(crianca)) {
+					if(livro.getAutores().contains(crianca)) {
 						resposta += "Autor: "+crianca.getNome()+" - "+livro.toString();
 					}
 				}
@@ -140,12 +136,11 @@ public class Util {
 	}
 	
 	public static String buscaLivroGeneroAutor(List<Autor> autores, List<Livro> livros) {
-		String listaLivro = "";
 		Sexo sexo = escolheSexo();
 		Autor autorSelect = new Autor();
+		String listaLivro = "";
 		
 		for (Autor autor : autores) {
-			
 			if(autor.getEnumSexo()==sexo) {
 				autorSelect = autor;
 				
@@ -159,7 +154,4 @@ public class Util {
 		
 		return listaLivro;
 	}
-	
-	
-	
 }

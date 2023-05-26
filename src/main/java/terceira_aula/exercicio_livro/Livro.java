@@ -12,16 +12,13 @@ public class Livro {
 
 	private String titulo;
 	private double preco;
-	List<Autor> autores = new ArrayList<Autor>();
+	private List<Autor> autores = new ArrayList<Autor>();
 	
 	public void cadastraLivro(List<Autor> todosAltores) {
 		do {
 			titulo = JOptionPane.showInputDialog("Informe o título").toLowerCase();
 			preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preço"));
-			int contador =0;
-			String continuar="";
 			adicionaAutor(todosAltores);
-			valida();
 		}while(valida()==false);
 	}
 	
@@ -30,7 +27,7 @@ public class Livro {
 		
 		if(preco<=0) {
 			cadValido = false;
-			JOptionPane.showMessageDialog(null, "O preço precisa ser maior que 0");
+			JOptionPane.showMessageDialog(null, "O preço precisa ser maior que R$0,00");
 		} else if(titulo.equals("")) {
 			cadValido = false;
 			JOptionPane.showMessageDialog(null, "O nome do livro deve ser preenchido");
@@ -44,7 +41,7 @@ public class Livro {
 		String continuar="";
 		
 		do {
-			String menu = Util.imprimeMenu();
+			Util.imprimeMenu();
 			autores.add(Util.escolheAutor(todosAutores));
 			continuar = JOptionPane.showInputDialog("Deseja cadastrar mais algum autor?");
 			contador++;
