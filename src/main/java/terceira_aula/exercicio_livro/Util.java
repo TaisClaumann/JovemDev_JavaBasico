@@ -116,19 +116,12 @@ public class Util {
 		return resposta;
 	}
 	
-	public static String buscaLivroAutorCrianca(List<Autor> autores, List<Livro> livros) {
+	public static String buscaLivroAutorCrianca(List<Livro> livros) {
 		String resposta = "";
-		Autor crianca = new Autor();
 		
-		for (Autor autor : autores) {
-			if(Livro.temAutorCrianca(autores)==true) {
-				crianca = autor;
-				
-				for (Livro livro : livros) {
-					if(livro.getAutores().contains(crianca)) {
-						resposta += "Autor: "+crianca.getNome()+" - "+livro.toString();
-					}
-				}
+		for (Livro livro : livros) {
+			if(livro.temAutorCrianca()==true) {
+				resposta += livro.getAutor()+"\n"+livro.toString();
 			}
 		}
 		

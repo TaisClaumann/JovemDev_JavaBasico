@@ -82,10 +82,10 @@ public class Livro {
 		return autorSelect;
 	}
 	
-	public static boolean temAutorCrianca(List<Autor> todosAutores) {
+	public boolean temAutorCrianca() {
 		boolean temCrianca = false;
 		
-		for (Autor autor : todosAutores) {
+		for (Autor autor : autores ) {
 			if(autor.getIdade()<=12) {
 				temCrianca = true;
 			}

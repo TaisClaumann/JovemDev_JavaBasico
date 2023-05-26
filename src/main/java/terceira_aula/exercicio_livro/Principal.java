@@ -33,7 +33,7 @@ public class Principal {
 				JOptionPane.showMessageDialog(null, Util.buscaLivroPorPreco(livros));
 				break;
 			case 6:
-				JOptionPane.showMessageDialog(null, Util.buscaLivroAutorCrianca(autores, livros));
+				JOptionPane.showMessageDialog(null, Util.buscaLivroAutorCrianca(livros));
 				break;
 			case 7:
 				JOptionPane.showMessageDialog(null, Util.buscaLivroGeneroAutor(autores, livros));
