@@ -47,7 +47,6 @@ public class Livro {
 		String continuar="";
 		
 		do {
-			Util.imprimeMenu();
 			autores.add(Util.escolheAutor(todosAutores));
 			continuar = JOptionPane.showInputDialog("Deseja cadastrar mais algum autor?");
 			contador++;
@@ -92,6 +91,18 @@ public class Livro {
 		}
 		
 		return temCrianca;
+	}
+	
+	public boolean temAutorDoGenero(Sexo sexo) {
+		boolean temAutor = false;
+		
+		for (Autor autor : autores) {
+			if(autor.getEnumSexo()==sexo) {
+				temAutor = true;
+			}
+		}
+		
+		return temAutor;
 	}
 	
 	public String toString() {

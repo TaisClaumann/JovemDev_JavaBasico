@@ -45,8 +45,7 @@ public class Util {
 	}
 	
 	public static Autor escolheAutor(List<Autor> autores) {
-		String menu = menuAutor(autores);
-		String pergAutor = JOptionPane.showInputDialog(menu);
+		String pergAutor = JOptionPane.showInputDialog(menuAutor(autores));
 		Autor autorEscolhido = new Autor();
 		
 		for (Autor autor : autores) {
@@ -128,23 +127,16 @@ public class Util {
 		return resposta;
 	}
 	
-	public static String buscaLivroGeneroAutor(List<Autor> autores, List<Livro> livros) {
+	public static String buscaLivroGeneroAutor(List<Livro> livros) {
 		Sexo sexo = escolheSexo();
-		Autor autorEscolhido = new Autor();
-		String listaLivro = "";
+		String resposta = "";
 		
-		for (Autor autor : autores) {
-			if(autor.getEnumSexo()==sexo) {
-				autorEscolhido = autor;
-				
-				for (Livro livro : livros) {
-					if(livro.temAutor(autorEscolhido)) {
-						listaLivro+= autorEscolhido.toString()+"\n"+livro.toString();
-					}
-				}
+		for (Livro livro : livros) {
+			if(livro.temAutorDoGenero(sexo)==true) {
+				resposta += livro.getAutor()+"\n"+livro.toString();
 			}
 		}
 		
-		return listaLivro;
+		return resposta;
 	}
 }
