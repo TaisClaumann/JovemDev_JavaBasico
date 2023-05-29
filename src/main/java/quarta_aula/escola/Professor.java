@@ -12,5 +12,7 @@ public class Professor {
 	private String nome;
 	private EnumFormacao formacao;
 	
-
+	public String toString() {
+		return "Prof: "+nome+"  Formação: "+formacao+"\n";
+	}
 }
