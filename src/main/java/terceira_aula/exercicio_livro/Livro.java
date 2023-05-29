@@ -25,7 +25,7 @@ public class Livro {
 				validaPreco = false;
 			}
 			adicionaAutor(todosAltores);
-		}while(valida()==false && validaPreco==false);
+		}while(valida()==false || validaPreco==false);
 	}
 	
 	public boolean valida() {
