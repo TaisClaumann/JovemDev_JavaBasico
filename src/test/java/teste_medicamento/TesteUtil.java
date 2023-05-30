@@ -21,6 +21,7 @@ class TesteUtil {
 		Medicamento m1 = new Medicamento("Med 1", EnumAdministracao.TOPICO);
 		util.getMedicamentos().add(m1);
 		util.addIndicacao(m1, "Sintoma 1");
+		util.addContraindicacao(m1, "Diabete");
 		
 		Medicamento m2 = new Medicamento("Med 2", EnumAdministracao.TOPICO);
 		util.getMedicamentos().add(m2);
@@ -29,13 +30,11 @@ class TesteUtil {
 		Medicamento m3 = new Medicamento("Med 3", EnumAdministracao.TOPICO);
 		util.getMedicamentos().add(m3);
 		util.addIndicacao(m3, "Sintoma 1");
-		
-		util.addContraindicacao(m1, "Diabete");
 		util.addContraindicacao(m3, "Colesterol alto");
 		
 		Pessoa p1 = new Pessoa("Pessoa 1", "Sintoma 1");
 		util.getPessoas().add(p1);
-		util.addAlergia(p1, "Diabetes");
+		util.addAlergia(p1, "Diabete");
 		
 	}
 	
@@ -99,11 +98,8 @@ class TesteUtil {
 	@DisplayName("Teste lista pessoa com seus respectivos medicamentos")
 	void testListaPessoaMedicamento() {
 		Pessoa p1 = util.getPessoas().get(0);
-		util.addAlergia(p1, "Diabete");
-		
 		Medicamento m3 = util.getMedicamentos().get(2);
-		util.addIndicacao(m3, "Sintoma 1");
-		util.addContraindicacao(m3, "Colesterol alto");
+		
 		util.addPrescricao(p1);
 		
 		String lista = p1.toString() +
