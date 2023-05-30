@@ -20,14 +20,11 @@ public class Medicamento {
 	private List<String> contraindicacoes = new ArrayList<>();
 	private List<String> indicacoes = new ArrayList<>();
 	
-	public List<String> addContraindicacao(String contra){
+	public void addContraindicacao(String contra){
 		contraindicacoes.add(contra);
-		return contraindicacoes;
 	}
 	
-	public List<String> addIndicacao(String indca){
+	public void addIndicacao(String indca){
 		indicacoes.add(indca);
-		return indicacoes;
 	}
-	
 }

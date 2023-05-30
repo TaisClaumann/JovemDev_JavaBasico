@@ -19,9 +19,8 @@ public class Pessoa {
 	private String sintoma;
 	private List<String> alergias = new ArrayList<>();
 	
-	public List<String> addAlergia(String alergia){
+	public void addAlergia(String alergia){
 		alergias.add(alergia);
-		return alergias;
 	}
 	
 	public String listaAlergia() {

@@ -28,12 +28,7 @@ public class Prescricao {
 	}
 	
 	public boolean isIndicado(String sintoma, Medicamento medicamento) {
-		boolean indicado = false;
-		
-		if(medicamento.getIndicacoes().contains(sintoma)) {
-			indicado = true;
-		}
-		return indicado;
+		return medicamento.getIndicacoes().contains(sintoma);
 	}
 	
 	public boolean temAlergia(Medicamento medicamento, Pessoa pessoa) {
@@ -45,7 +40,6 @@ public class Prescricao {
 				temAlergia = true;
 			}
 		}
-	
 		return temAlergia;
 	}
 	
