@@ -3,41 +3,44 @@ package quarta_aula.medicamento;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+
+@Getter
 public class Util {
 	
-	static public List<Medicamento> medicamentos = new ArrayList<>();
-	static public List<Pessoa> pessoas = new ArrayList<>();
-	static public List<Prescricao> prescricoes = new ArrayList<>();
+	private List<Medicamento> medicamentos = new ArrayList<>();
+	private List<Pessoa> pessoas = new ArrayList<>();
+	private List<Prescricao> prescricoes = new ArrayList<>();
 	
-	public static void cadastraMedicamento(String nome, EnumAdministracao administracao) {
+	public void cadastraMedicamento(String nome, EnumAdministracao administracao) {
 		Medicamento medicamento = new Medicamento(nome, administracao);
 		medicamentos.add(medicamento);
 	}
 	
-	public static void addContraindicacao(Medicamento medicamento, String contraindicacao) {
+	public void addContraindicacao(Medicamento medicamento, String contraindicacao) {
 		if(temMedicamento(medicamento)) {
 			medicamento.addContraindicacao(contraindicacao);
 		}
 	}
 	
-	public static void addIndicacao(Medicamento medicamento, String indicacao) {
+	public void addIndicacao(Medicamento medicamento, String indicacao) {
 		if(temMedicamento(medicamento)) {
 			medicamento.addIndicacao(indicacao);
 		}
 	}
 	
-	public static void cadastraPessoa(String nome, String sintoma) {
+	public void cadastraPessoa(String nome, String sintoma) {
 		Pessoa pessoa = new Pessoa(nome, sintoma);
 		pessoas.add(pessoa);
 	}
 	
-	public static void addAlergia(Pessoa pessoa, String alergia) {
+	public void addAlergia(Pessoa pessoa, String alergia) {
 		if(temPessoa(pessoa)) {
 			pessoa.addAlergia(alergia);
 		}
 	}
 	
-	public static void addPrescricao(Pessoa pessoa) {
+	public void addPrescricao(Pessoa pessoa) {
 		if(temPessoa(pessoa)) {
 			Prescricao prescricao = new Prescricao(pessoa);
 			prescricao.addPrescricao(pessoa, medicamentos);
@@ -45,7 +48,7 @@ public class Util {
 		}
 	}
 	
-	public static String listaPessoaMedicamento(Pessoa pessoa) {
+	public String listaPessoaMedicamento(Pessoa pessoa) {
 		String lista = "";
 		if(temPessoa(pessoa)) {
 			
@@ -58,7 +61,7 @@ public class Util {
 		return lista;
 	}
 	
-	public static boolean temPessoa(Pessoa pessoa) {
+	public boolean temPessoa(Pessoa pessoa) {
 		boolean temPessoa = false;
 		for (Pessoa p : pessoas) {
 			if(p.equals(pessoa)) {
@@ -68,7 +71,7 @@ public class Util {
 		return temPessoa;
 	}
 	
-	public static boolean temMedicamento(Medicamento medicamento) {
+	public boolean temMedicamento(Medicamento medicamento) {
 		boolean temMedicamento = false;
 		for (Medicamento m : medicamentos) {
 			if(m.equals(medicamento)) {

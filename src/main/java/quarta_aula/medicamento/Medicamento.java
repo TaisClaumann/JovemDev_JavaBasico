@@ -6,9 +6,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
-@Setter
 @Getter
 @RequiredArgsConstructor
 public class Medicamento {
