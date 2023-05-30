@@ -17,9 +17,17 @@ public class Medicamento {
 	private String nome;
 	@NonNull
 	private EnumAdministracao administracao;
-	private List<String> alergiasContra = new ArrayList<>();
+	private List<String> contraindicacoes = new ArrayList<>();
 	private List<String> indicacoes = new ArrayList<>();
 	
-
+	public List<String> addContraindicacao(String contra){
+		contraindicacoes.add(contra);
+		return contraindicacoes;
+	}
+	
+	public List<String> addIndicacao(String indca){
+		indicacoes.add(indca);
+		return indicacoes;
+	}
 	
 }

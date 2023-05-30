@@ -19,5 +19,23 @@ public class Pessoa {
 	private String sintoma;
 	private List<String> alergias = new ArrayList<>();
 	
-
+	public List<String> addAlergia(String alergia){
+		alergias.add(alergia);
+		return alergias;
+	}
+	
+	public String listaAlergia() {
+		String lista = "Alergias:"+"\n";
+		
+		for (String alergia : alergias) {
+			lista += "- "+alergia;
+		}
+		
+		return lista;
+	}
+	
+	public String toString() {
+		return nome+"  Sintoma: "+sintoma+"\n"
+			   + listaAlergia();
+	}
 }
