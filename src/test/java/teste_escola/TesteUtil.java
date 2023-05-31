@@ -38,6 +38,8 @@ class TesteUtil {
 		Professor p4 = new Professor("Tata", EnumFormacao.ESPECIALIZACAO);
 		Util.professores.add(p2);
 		Util.cadastraDisciplina("Geografia", 20, p2);
+		
+		
 	}
 	
 	@Test
