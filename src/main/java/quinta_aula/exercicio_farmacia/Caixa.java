@@ -2,6 +2,7 @@ package quinta_aula.exercicio_farmacia;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 
@@ -57,61 +58,34 @@ public class Caixa {
 	}
 
 	public String getClientesDevedores() {
-		String lista = "";
-
-		for (Cliente cliente : clientes) {
-			if (cliente.temDivida(cliente)) {
-				lista += cliente;
-			}
-		}
-		return lista;
+		return clientes.stream().filter(cliente -> cliente.temDivida())
+								.map(Cliente::toString)
+								.collect(Collectors.joining());
 	}
 
 	public String getClientesSemDividas() {
-		String lista = "";
-
-		for (Cliente cliente : clientes) {
-			if (!cliente.temDivida(cliente)) {
-				lista += cliente;
-			}
-		}
-		return lista;
+		return clientes.stream().filter(cliente -> !cliente.temDivida())
+								.map(Cliente::toString)
+								.collect(Collectors.joining());
 	}
 
 	public String listaMedicamentos() {
-		String lista = "";
-
-		for (Produto produto : produtos) {
-			if (produto instanceof Medicamento) {
-				Medicamento medicamento = (Medicamento) produto;
-				lista += medicamento;
-			}
-		}
-		return lista;
+		return produtos.stream().filter(produto -> produto instanceof Medicamento)
+								.map(Produto::toString)
+								.collect(Collectors.joining());
+		
 	}
 
 	public String listaPerfumarias() {
-		String lista = "";
-
-		for (Produto produto : produtos) {
-			if (produto instanceof Perfumaria) {
-				Perfumaria perfumaria = (Perfumaria) produto;
-				lista += perfumaria;
-			}
-		}
-		return lista;
+		return produtos.stream().filter(produto -> produto instanceof Perfumaria)
+								.map(Produto::toString)
+								.collect(Collectors.joining());
 	}
 
 	public String listaEquipMedicos() {
-		String lista = "";
-
-		for (Produto produto : produtos) {
-			if (produto instanceof EquipamentoMedico) {
-				EquipamentoMedico equipamento = (EquipamentoMedico) produto;
-				lista += equipamento;
-			}
-		}
-		return lista;
+		return produtos.stream().filter(produto -> produto instanceof EquipamentoMedico)
+								.map(Produto::toString)
+								.collect(Collectors.joining());
 	}
 
 	public boolean existeProduto(Produto produto) {

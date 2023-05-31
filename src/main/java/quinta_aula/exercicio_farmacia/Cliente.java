@@ -18,7 +18,7 @@ public class Cliente {
 		}
 	}
 	
-	public boolean temDivida(Cliente cliente){
+	public boolean temDivida(){
 		return getSaldoDevedor()>0;
 	}
 	
