@@ -10,13 +10,24 @@ public class ContaCorrente extends Conta{
 	public void saque(double saque) {
 		if(temDinheiro(saque)) {
 			super.saque(saque);
+		} else {
+			String msg = "Saldo da conta inferior ao saque";
 		}
 	}
 	
 	@Override
 	public void transferencia(Conta contaDestino, double valor) {
 		if(temDinheiro(valor)) {
-			super.transferencia(contaDestino, valor);
+			if(contaDestino instanceof ContaUniversitaria) {
+				ContaUniversitaria contaUni = (ContaUniversitaria) contaDestino;
+				
+				if(contaUni.limiteDisponivel(valor)>=0) {
+					super.transferencia(contaDestino, valor);
+				}
+		
+			} else {
+				super.transferencia(contaDestino, valor);
+			}
 		}
 	}
 }

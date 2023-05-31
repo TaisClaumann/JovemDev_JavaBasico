@@ -23,10 +23,10 @@ public class ContaUniversitaria extends Conta{
 	}
 	
 	@Override
-	public void transferencia(Conta contaSaque, double valor) {
-		if(limiteDisponivel(valor)>=0) {
-			deposito(valor);
-			contaSaque.saque(valor);
+	public void transferencia(Conta contaDeposito, double valor) {
+		if(temDinheiro(valor)) {
+			saque(valor);
+			contaDeposito.deposito(valor);
 		}
 	}
 	
