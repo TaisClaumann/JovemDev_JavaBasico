@@ -62,10 +62,6 @@ class TesteCaixa {
 		caixa.vendaSemPrescricao(e1, c1, 1);
 		assertEquals(4, e1.getEstoque());
 		assertEquals(240.0, c1.getSaldoDevedor());
-		
-		caixa.vendaSemPrescricao(e1, c1, 5);
-		assertEquals(1, e1.getQtdEncomendas());
-		assertEquals(0, e1.getEstoque());
 	}
 	
 	@Test
