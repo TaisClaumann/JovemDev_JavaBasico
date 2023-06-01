@@ -1,10 +1,8 @@
 package quinta_aula.exercicio_farmacia;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class EquipamentoMedico extends Produto{
 	
 	private int qtdEncomendas;
@@ -20,11 +18,11 @@ public class EquipamentoMedico extends Produto{
 		} else {
 			
 			do {
-				setEstoque(getEstoque()-1);
+				estoque = getEstoque()-1;
 				quantidade -= 1;
 			} while(getEstoque()>0);
 			
-			setQtdEncomendas(quantidade);
+			qtdEncomendas += quantidade;
 			cliente.setSaldoDevedor(cliente.getSaldoDevedor()+(getValor()*quantidade));
 		}
 	}

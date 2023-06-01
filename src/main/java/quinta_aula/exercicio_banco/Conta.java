@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class Conta {
 	
 	private Integer numero;
@@ -20,11 +19,11 @@ public class Conta {
 	}
 	
 	public void deposito(double valor) {
-		setSaldo(saldo+valor);
+		saldo += valor;
 	}
 	
 	public void saque(double saque) {
-			setSaldo(saldo-saque);
+		saldo -= saque;
 	}
 	
 	public void transferencia(Conta contaDestino, double valor) {

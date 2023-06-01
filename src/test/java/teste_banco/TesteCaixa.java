@@ -37,26 +37,22 @@ class TesteCaixa {
 	}
 	
 	@Test
-	@DisplayName("Teste cadastra conta corrente")
-	void cadastraContaCorrente() {
+	@DisplayName("Teste cadastro de conta")
+	void cadastroConta() {
 		ContaCorrente corrente2 = new ContaCorrente(1234, "C2", "Bob", 1000);
-		caixa.cadastraContaCorrente(corrente2);
+		caixa.cadastraConta(corrente2);
 		assertEquals(7, caixa.getContas().size());
-	}
-	
-	@Test
-	@DisplayName("Teste cadastra conta especial")
-	void cadastraContaEspecial() {
+		
 		ContaEspecial especial2 = new ContaEspecial(3210, "E2", "Bob", 900, 1000);
-		caixa.cadastraContaEspecial(especial2);
-		assertEquals(7, caixa.getContas().size());
+		caixa.cadastraConta(especial2);
+		assertEquals(8, caixa.getContas().size());
 	}
 	
 	@Test
 	@DisplayName("Teste cadastra conta universitaria")
 	void cadastraContaUniversitaria() {
 		ContaUniversitaria universitaria2 = new ContaUniversitaria(4567, "E2", "Bob", 1000);
-		caixa.cadastraContaUniversitaria(universitaria2);
+		caixa.cadastraConta(universitaria2);
 		assertEquals(7, caixa.getContas().size());
 	}
 	

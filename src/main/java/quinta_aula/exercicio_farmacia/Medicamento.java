@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
 public class Medicamento extends Produto{
 
@@ -26,7 +25,7 @@ public class Medicamento extends Produto{
 	public void vendaComPrescricao(Cliente cliente, int quantidade, String nomeMedico) {
 		if(temEstoque(quantidade)) {
 			super.venda(cliente, quantidade);
-			setNomeMedico(nomeMedico);
+			this.nomeMedico = nomeMedico;
 		}
 	}
 	

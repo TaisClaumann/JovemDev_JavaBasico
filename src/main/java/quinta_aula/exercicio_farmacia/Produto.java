@@ -2,15 +2,13 @@ package quinta_aula.exercicio_farmacia;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
-@Setter
 @Getter
 @AllArgsConstructor
 public class Produto {
 
 	private String nome;
-	private int estoque;
+	protected int estoque;
 	private double valor;
 	
 	public void venda(Cliente cliente, int quantidade) {

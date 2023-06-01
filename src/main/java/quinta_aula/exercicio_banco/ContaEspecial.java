@@ -11,10 +11,7 @@ public class ContaEspecial extends Conta {
 
 	public ContaEspecial(Integer numero, String agencia, String nomeCorrentista, double saldo, double limite) {
 		super(numero, agencia, nomeCorrentista, saldo);
-
-		if (temDinheiro(limite)) {
-			this.limite = limite;
-		}
+		this.limite = limite;
 	}
 
 	@Override
