@@ -11,9 +11,13 @@ public class Produto {
 	protected int estoque;
 	private double valor;
 	
-	public void venda(Cliente cliente, int quantidade) {
-		estoque = getEstoque()-quantidade;
-		cliente.setSaldoDevedor(cliente.getSaldoDevedor()+(getValor()*quantidade));
+	public boolean venda(Cliente cliente, int quantidade) {
+		if(temEstoque(quantidade)) {
+			estoque = getEstoque()-quantidade;
+			cliente.setSaldoDevedor(cliente.getSaldoDevedor()+(getValor()*quantidade));
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean temEstoque(int quantVenda) {

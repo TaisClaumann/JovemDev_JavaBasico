@@ -14,13 +14,6 @@ public class Medicamento extends Produto{
 		super(nome, estoque, valor);
 		this.precisaReceita = precisaReceita;
 	}
-
-	@Override
-	public void venda(Cliente cliente, int quantidade) {
-		if(temEstoque(quantidade)) {
-			super.venda(cliente, quantidade);
-		}
-	}
 	
 	public void vendaComPrescricao(Cliente cliente, int quantidade, String nomeMedico) {
 		if(temEstoque(quantidade)) {

@@ -12,10 +12,12 @@ public class Cliente {
 	private String nome;
 	private double saldoDevedor;
 	
-	public void debitoDivida(double valor) {
+	public boolean debitoDivida(double valor) {
 		if(valor<=getSaldoDevedor()) {
 			setSaldoDevedor(getSaldoDevedor()-valor);
+			return true;
 		}
+		return false;
 	}
 	
 	public boolean temDivida(){

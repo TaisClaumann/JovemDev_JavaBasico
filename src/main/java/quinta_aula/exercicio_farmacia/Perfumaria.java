@@ -7,9 +7,11 @@ public class Perfumaria extends Produto{
 	}
 	
 	@Override
-	public void venda(Cliente cliente, int quantidade) {
+	public boolean venda(Cliente cliente, int quantidade) {
 		if(temEstoque(quantidade) && cliente.getSaldoDevedor()<=300) {
 			super.venda(cliente, quantidade);
+			return true;
 		}
+		return false;
 	}
 }
