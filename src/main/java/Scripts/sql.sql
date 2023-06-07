@@ -120,52 +120,53 @@ order by voto.voto desc;
 
 
 20) select partido.sigla, sum(voto.voto) as votos
-from voto
-inner join candidato on candidato.id = voto.candidato 
-inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
-inner join partido on partido.id = candidato.partido 
-group by partido.sigla
-order by votos desc;
+    from voto
+    inner join candidato on candidato.id = voto.candidato 
+    inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
+    inner join partido on partido.id = candidato.partido 
+    group by partido.sigla
+    order by votos desc;
 
-21) select cargo.nome, cidade.nome, sum(v.voto + vi.brancos + vi.nulos) as total
+21) select cidade.nome, cidade.qt_eleitores, ((sum(v.voto) + vi.brancos + vi.nulos)) as total
     from voto v cross join voto_invalido vi
     inner join candidato on candidato.id = v.candidato
     inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
     inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
     where vi.cargo = candidato.cargo and vi.cidade = candidato.cidade
-    group by cargo.nome, cidade.nome;
-
-22) select cargo.nome, cidade.nome, (cidade.qt_eleitores - sum(v.voto + vi.brancos + vi.nulos)) as total
-    from voto v cross join voto_invalido vi
-    inner join candidato on candidato.id = v.candidato
-    inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
-    inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
-    where vi.cargo = candidato.cargo and vi.cidade = candidato.cidade
-    group by cargo.nome, cidade.nome, cidade.qt_eleitores;
-
-23) select cidade.nome, (cidade.qt_eleitores - sum(v.voto + vi.brancos + vi.nulos)) as total
-    from voto v cross join voto_invalido vi
-    inner join candidato on candidato.id = v.candidato
-    inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
-    inner join cidade on cidade.id = candidato.cidade
-    where vi.cargo = candidato.cargo and vi.cidade = candidato.cidade
-    group by cidade.nome, cidade.qt_eleitores
+    group by cidade.nome, cidade.qt_eleitores, vi.brancos, vi.nulos
     order by total desc;
 
-24) select cidade.nome, (cidade.qt_eleitores - sum(v.voto + vi.brancos + vi.nulos)) as total,
-    (((cidade.qt_eleitores - sum(v.voto + vi.brancos + vi.nulos))*100)/cidade.qt_eleitores) as porcentagem
+22) select cidade.nome, cidade.qt_eleitores, (cidade.qt_eleitores-(sum(v.voto) + vi.brancos + vi.nulos)) as total
+    from voto v cross join voto_invalido vi
+    inner join candidato on candidato.id = v.candidato
+    inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
+    inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
+    where vi.cargo = candidato.cargo and vi.cidade = candidato.cidade
+    group by cidade.nome, cidade.qt_eleitores, vi.brancos, vi.nulos
+    order by total desc;
+
+23) select cidade.nome, cidade.qt_eleitores, (cidade.qt_eleitores-(sum(v.voto) + vi.brancos + vi.nulos)) as total
     from voto v cross join voto_invalido vi
     inner join candidato on candidato.id = v.candidato
     inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
     inner join cidade on cidade.id = candidato.cidade
     where vi.cargo = candidato.cargo and vi.cidade = candidato.cidade
-    group by cidade.nome, cidade.qt_eleitores
+    group by cidade.nome, cidade.qt_eleitores, vi.brancos, vi.nulos
+    order by total desc;
+
+24) select cidade.nome, cidade.qt_eleitores, 
+    (((cidade.qt_eleitores-(sum(v.voto) + vi.brancos + vi.nulos))*100)/cidade.qt_eleitores) as porcentagem
+    from voto v cross join voto_invalido vi
+    inner join candidato on candidato.id = v.candidato
+    inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
+    inner join cidade on cidade.id = candidato.cidade
+    where vi.cargo = candidato.cargo and vi.cidade = candidato.cidade
+    group by cidade.nome, cidade.qt_eleitores, vi.brancos, vi.nulos
     order by porcentagem desc;
 
-25) select cidade.nome, candidato.nome, max(voto.voto) as maior_voto
+25) select distinct on (cidade.id) cidade.id, cidade.nome, candidato.nome, voto.voto
     from voto 
-    inner join candidato on voto.candidato = candidato.id
+    inner join candidato on voto.candidato = candidato.id 
     inner join cidade on candidato.cidade = cidade.id
-    inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
-    group by candidato.nome, cidade.nome
-    order by cidade.nome;
+    inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'   
+    order by cidade.id, voto.voto desc;
